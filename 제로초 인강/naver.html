@@ -89,18 +89,27 @@
             height: 2000px;
         }
         #header{
+            position: relative;
             text-align: left;
         }
-        #header-hamburger:hover{
+        #header-hamburger:hover::before{
+            position: absolute;
+            left: 1px;
+            top: 1px;
+            content: '';
             background-color: var(--color_option_bg);
             border-radius: 50%;
+            width: 44px;
+            height: 44px;
         }
         #header-hamburger{
+            position: absolute;
+            top: 18px;
+            left: -10px;
             border: none;
             cursor: pointer;
             background: none;
             display: inline-block;
-            margin-top: 18px;
             padding: 10px;
         }
         #header-hamburger > div{
