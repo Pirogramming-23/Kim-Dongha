@@ -94,29 +94,29 @@
         }
         #header-hamburger:hover::before{
             position: absolute;
-            left: 1px;
-            top: 1px;
+            left: 0;
+            top: 0;
             z-index: 0;
             content: '';
             background-color: var(--color_option_bg);
             border-radius: 50%;
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
         }
         #header-hamburger{
             position: absolute;
-            top: 18px;
-            left: -10px;
+            top: 5px;
+            left: -12px;
             border: none;
             cursor: pointer;
             background: none;
             display: inline-block;
-            padding: 10px;
+            padding: 8px;
         }
         #header-hamburger > div{
             z-index: 1;
-            width: 26px;
-            height: 26px;
+            width: 32px;
+            height: 32px;
             position: relative;
             background-size: 463px 442px;
             background-position: -311px -166px;
@@ -126,10 +126,134 @@
         .blind{
             position: absolute;
             clip: rect(0 0 0 0);
-            width: 1px;
-            height: 1px;
+            width: 0;
+            height: 0;
             margin: -1px;
             overflow: hidden;
+        }
+        #header-naverpay:hover::before{
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            content: '';
+            background-color: var(--color_option_bg);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+        }
+        #header-naverpay{
+            position: absolute;
+            top: 5px;
+            left: 41px;
+            border: none;
+            cursor: pointer;
+            background: none;
+            display: inline-block;
+            padding: 8px;
+        }
+        #header-naverpay > div{
+            z-index: 1;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            background-size: 463px 442px;
+            background-position: -248px -260px;
+            background-image: url(./sp_main.png);
+            background-repeat: no-repeat;
+        }
+        #header-notice:hover::before{
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            content: '';
+            background-color: var(--color_option_bg);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+        }
+        #header-notice{
+            position: absolute;
+            top: 5px;
+            right: 42px;
+            border: none;
+            cursor: pointer;
+            background: none;
+            display: inline-block;
+            padding: 8px;
+        }
+        #header-notice > div{
+            z-index: 1;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            background-size: 463px 442px;
+            background-position: -311px -232px;
+            background-image: url(./sp_main.png);
+            background-repeat: no-repeat;
+        }
+        #header-navertalk:hover::before{
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            content: '';
+            background-color: var(--color_option_bg);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+        }
+        #header-navertalk{
+            position: absolute;
+            top: 5px;
+            right: 94px;
+            border: none;
+            cursor: pointer;
+            background: none;
+            display: inline-block;
+            padding: 8px;
+        }
+        #header-navertalk > div{
+            z-index: 1;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            background-size: 463px 442px;
+            background-position: -99px -316px;
+            background-image: url(./sp_main.png);
+            background-repeat: no-repeat;
+        }
+        #header-navershop:hover::before{
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            content: '';
+            background-color: var(--color_option_bg);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+        }
+        #header-navershop{
+            position: absolute;
+            top: 5px;
+            right: -10px;
+            border: none;
+            cursor: pointer;
+            background: none;
+            display: inline-block;
+            padding: 8px;
+        }
+        #header-navershop > div{
+            z-index: 1;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            background-size: 463px 442px;
+            background-position: -33px -316px;
+            background-image: url(./sp_main.png);
+            background-repeat: no-repeat;
         }
     </style>
 </head>
@@ -141,6 +265,30 @@
                     <!--before-->
                     <div></div>
                     <span class="blind">확장 영역</span>
+                    <!-- after -->
+                </button>
+                <button id="header-naverpay">
+                    <!--before-->
+                    <div></div>
+                    <span class="blind">네이버 페이</span>
+                    <!-- after -->
+                </button>
+                <button id="header-navertalk">
+                    <!--before-->
+                    <div></div>
+                    <span class="blind">네이버 톡</span>
+                    <!-- after -->
+                </button>
+                <button id="header-notice">
+                    <!--before-->
+                    <div></div>
+                    <span class="blind">알림</span>
+                    <!-- after -->
+                </button>
+                <button id="header-navershop">
+                    <!--before-->
+                    <div></div>
+                    <span class="blind">네이버 쇼핑</span>
                     <!-- after -->
                 </button>
             </div>
