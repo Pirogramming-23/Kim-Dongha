@@ -96,6 +96,7 @@
             position: absolute;
             left: 1px;
             top: 1px;
+            z-index: 0;
             content: '';
             background-color: var(--color_option_bg);
             border-radius: 50%;
@@ -113,12 +114,22 @@
             padding: 10px;
         }
         #header-hamburger > div{
+            z-index: 1;
             width: 26px;
             height: 26px;
+            position: relative;
             background-size: 463px 442px;
             background-position: -311px -166px;
             background-image: url(./sp_main.png);
             background-repeat: no-repeat;
+        }
+        .blind{
+            position: absolute;
+            clip: rect(0 0 0 0);
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -127,7 +138,10 @@
         <div id="wrap-center">
             <div id="header">
                 <button id="header-hamburger">
+                    <!--before-->
                     <div></div>
+                    <span class="blind">확장 영역</span>
+                    <!-- after -->
                 </button>
             </div>
             <div id="search"></div>
