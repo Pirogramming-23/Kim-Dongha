@@ -93,7 +93,7 @@
         #header{
             position: relative;
             text-align: left;
-            height: 64px;
+            height: 52px; /*최신 네이버 동일하게 설정*/
         }
         #header-hamburger:hover::before{
             position: absolute;
@@ -315,6 +315,20 @@
                     padding-left: 10px;
                     align-items: center;
                     justify-content: center;
+                    position: relative;
+                }
+                #search-svg::after{
+                    display: none;
+                }
+                #search > form:focus-within #search-svg::after{
+                    display: inline-block;
+                    position: absolute;
+                    right: 0;
+                    content: '';
+                    width: 1px;
+                    height: 20px;
+                    background-color: #e4e4e4;
+                    top: 20px;
                 }
                 #search-svg > svg{
                     width: 24px;
