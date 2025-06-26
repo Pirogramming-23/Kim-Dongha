@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+    <title>NAVER</title>
+    <style>
+        :root {
+            --color_title: #080808;
+            --color_title_rgb: 8, 8, 8;
+            --color_body: #101010;
+            --color_body_rgb: 16, 16, 16;
+            --color_caption1: #404040;
+            --color_caption1_rgb: 64, 64, 64;
+            --color_caption2: #606060;
+            --color_caption2_rgb: 96, 96, 96;
+            --color_caption3: #555558;
+            --color_caption3_rgb: 85, 85, 88;
+            --color_search: #000;
+            --color_search_rgb: 0, 0, 0;
+            --color_border_out: #e3e5e8;
+            --color_border_out_rgb: 227, 229, 232;
+            --color_border_in: #ebebeb;
+            --color_border_in_rgb: 235, 235, 235;
+            --color_border_in_divider: #ebebeb;
+            --color_border_in_divider_rgb: 235, 235, 235;
+            --color_border_in_exception: #ebebeb;
+            --color_border_in_exception_rgb: 235, 235, 235;
+            --color_button_border: #dadcdf;
+            --color_button_border_rgb: 218, 220, 223;
+            --color_dot_divider: #d3d5d7;
+            --color_dot_divider_rgb: 211, 213, 215;
+            --color_block_bg: #fff;
+            --color_block_bg_rgb: 255, 255, 255;
+            --color_board_bg: #f4f6fa;
+            --color_board_bg_rgb: 244, 246, 250;
+            --color_option_bg: #f5f7f8;
+            --color_option_bg_rgb: 245, 247, 248;
+            --color_login_bg: #fafbfb;
+            --color_login_bg_rgb: 250, 251, 251;
+            --color_menu_widget_bg: #fff;
+            --color_menu_widget_bg_rgb: 255, 255, 255;
+            --color_setting_bg: #fff;
+            --color_setting_bg_rgb: 255, 255, 255;
+            --color_button1_bg: #fff;
+            --color_button1_bg_rgb: 255, 255, 255;
+            --color_button2_bg: #fff;
+            --color_button2_bg_rgb: 255, 255, 255;
+            --color_news: #3a67ea;
+            --color_news_rgb: 58, 103, 234;
+            --color_news_econ_stay: #909aab;
+            --color_news_econ_stay_rgb: 144, 154, 171;
+            --color_news_econ_down: #4f67d6;
+            --color_news_econ_down_rgb: 79, 103, 214;
+            --color_live_news_price: #f4361e;
+            --color_live_news_price_rgb: 244, 54, 30;
+            --color_enter: #e538e2;
+            --color_enter_rgb: 229, 56, 226;
+            --color_enter_bg: #f2f1fb;
+            --color_enter_bg_rgb: 242, 241, 251;
+            --color_sports: #1f65ef;
+            --color_sports_rgb: 31, 101, 239;
+            --color_sports_bg: #f4f7fe;
+            --color_sports_bg_rgb: 244, 247, 254;
+            --color_econ: #008f76;
+            --color_econ_rgb: 0, 143, 118;
+            --color_calendar: #eb5b5b;
+            --color_calendar_rgb: 235, 91, 91;
+            --color_dic: #031f5f;
+            --color_dic_rgb: 3, 31, 95;
+            --color_shop: #9858f5;
+            --color_shop_rgb: 152, 88, 245;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        html, body{
+            font-size: 10.5px;
+            line-height: 10.5px;
+            margin: 0;
+            padding: 0;
+            letter-spacing: -0.4px;
+            font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕";
+        }
+        form, ul{
+            margin: 0;
+            padding: 0;
+        }
+        #wrap{
+            text-align: center;
+        }
+        #wrap-center{
+            display: inline-block;
+            width: 1280px;
+        }
+        #main{
+            height: 2000px;
+        }
+        #header{
+            position: relative;
+            text-align: left;
+            height: 52px; /*최신 네이버 동일하게 설정*/
+        }
+        #header-hamburger:hover::before{
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            content: '';
+            background-color: var(--color_option_bg);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+        }
+        #header-hamburger{
+            position: absolute;
+            top: 5px;
+            left: -12px;
+            border: none;
+            cursor: pointer;
+            background: none;
+            display: inline-block;
+            padding: 8px;
+        }
+        #header-hamburger > div{
+            z-index: 1;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            background-size: 463px 442px;
+            background-position: -311px -166px;
+            background-image: url(./sp_main.png);
+            background-repeat: no-repeat;
+        }
+        .blind{
+            position: absolute;
+            clip: rect(0 0 0 0);
+            width: 0;
+            height: 0;
+            margin: -1px;
+            overflow: hidden;
+        }
+        #header-naverpay:hover::before{
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            content: '';
+            background-color: var(--color_option_bg);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+        }
+        #header-naverpay{
+            position: absolute;
+            top: 5px;
+            left: 41px;
+            border: none;
+            cursor: pointer;
+            background: none;
+            display: inline-block;
+            padding: 8px;
+        }
+        #header-naverpay > div{
+            z-index: 1;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            background-size: 463px 442px;
+            background-position: -248px -260px;
+            background-image: url(./sp_main.png);
+            background-repeat: no-repeat;
+        }
+        #header-notice:hover::before{
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            content: '';
+            background-color: var(--color_option_bg);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+        }
+        #header-notice{
+            position: absolute;
+            top: 5px;
+            right: 42px;
+            border: none;
+            cursor: pointer;
+            background: none;
+            display: inline-block;
+            padding: 8px;
+        }
+        #header-notice > div{
+            z-index: 1;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            background-size: 463px 442px;
+            background-position: -311px -232px;
+            background-image: url(./sp_main.png);
+            background-repeat: no-repeat;
+        }
+        #header-navertalk:hover::before{
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            content: '';
+            background-color: var(--color_option_bg);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+        }
+        #header-navertalk{
+            position: absolute;
+            top: 5px;
+            right: 94px;
+            border: none;
+            cursor: pointer;
+            background: none;
+            display: inline-block;
+            padding: 8px;
+        }
+        #header-navertalk > div{
+            z-index: 1;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            background-size: 463px 442px;
+            background-position: -99px -316px;
+            background-image: url(./sp_main.png);
+            background-repeat: no-repeat;
+        }
+        #header-navershop:hover::before{
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 0;
+            content: '';
+            background-color: var(--color_option_bg);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+        }
+        #header-navershop{
+            position: absolute;
+            top: 5px;
+            right: -10px;
+            border: none;
+            cursor: pointer;
+            background: none;
+            display: inline-block;
+            padding: 8px;
+        }
+        #header-navershop > div{
+            z-index: 1;
+            width: 32px;
+            height: 32px;
+            position: relative;
+            background-size: 463px 442px;
+            background-position: -33px -316px;
+            background-image: url(./sp_main.png);
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div id="wrap-center">
+            <div id="header">
+                <button id="header-hamburger">
+                    <!--before-->
+                    <div></div>
+                    <span class="blind">확장 영역</span>
+                    <!-- after -->
+                </button>
+                <button id="header-naverpay">
+                    <!--before-->
+                    <div></div>
+                    <span class="blind">네이버 페이</span>
+                    <!-- after -->
+                </button>
+                <button id="header-navertalk">
+                    <!--before-->
+                    <div></div>
+                    <span class="blind">네이버 톡</span>
+                    <!-- after -->
+                </button>
+                <button id="header-notice">
+                    <!--before-->
+                    <div></div>
+                    <span class="blind">알림</span>
+                    <!-- after -->
+                </button>
+                <button id="header-navershop">
+                    <!--before-->
+                    <div></div>
+                    <span class="blind">네이버 쇼핑</span>
+                    <!-- after -->
+                </button>
+            </div>
+            <style>
+                #search > form{
+                    display: inline-flex;
+                    width: 708px;
+                    height: 60px;
+                    border: 1px solid #03c75a;
+                    border-radius: 33px;
+                    text-align: left;
+                }
+                #search > form:hover{
+                    box-shadow: 0 2px 4px 0 rgba(0,0,0,.12);
+                }
+                #search-svg{
+                    display: inline-flex;
+                    width: 68px;
+                    margin-right: 12px;
+                    height: 100%;
+                    padding-left: 10px;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                }
+                #search-svg::after{
+                    display: none;
+                }
+                #search > form:focus-within #search-svg::after{
+                    display: inline-block;
+                    position: absolute;
+                    right: 0;
+                    content: '';
+                    width: 1px;
+                    height: 20px;
+                    background-color: #e4e4e4;
+                    top: 20px;
+                }
+                #search-svg > svg{
+                    width: 24px;
+                    height: 24px;
+                    fill: #03c75a;
+                }
+                #search-input{
+                    width: 480px;
+                    padding: 17px 0;
+                    font-size: 2rem;
+                    line-height: 24px;
+                    font-weight: bold;
+                    border: none;
+                    outline: none;
+                }
+                #search-input::placeholder{
+                    color: white;
+                }
+                #search-input:focus::placeholder{
+                    color: #e4e4e4;
+                }
+                #search-right{
+                    display: flex;
+                    flex: 1;
+                    align-items: stretch;
+                    justify-content: flex-end;
+                }
+                #search-keyboard, #search-recent, #search-button{
+                    background: transparent;
+                    border: none;
+                    cursor: pointer;
+                }
+                #search-keyboard::before{
+                    content: "";
+                    display: block;
+                    background-image: url(./sp_main.png);
+                    background-size: 463px 442px;
+                    background-position: -148px -301px;
+                    background-repeat: no-repeat;
+                    width: 24px;
+                    height: 14px;
+                }
+                #search-keyboard:hover::before{
+                    filter: brightness(0.7);
+                }
+                #search-recent::before{
+                    content: "";
+                    display: block;
+                    background-image: url(./sp_main.png);
+                    background-size: 463px 442px;
+                    background-position: -453px -422px;
+                    background-repeat: no-repeat;
+                    width: 10px;
+                    height: 6px;
+                }
+                #search-button{
+                    padding: 17px 27px 16px 10px;
+                }
+                #search-button > div{
+                    fill: #03c75a;
+                    width: 25px;
+                    height: 25px;
+                }
+                #search-button > div ::before{
+                    content: "";
+                    display: inline-block;
+                    background-image: url(./sp_main.png);
+                    background-size: 463px 442px;
+                    background-position: -405px -79px;
+                    background-repeat: no-repeat;
+                    width: 25px;
+                    height: 25px;
+                }
+            </style>
+            <div id="search">
+                <form action="">
+                    <a id="search-svg" href="#">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"></path></svg>
+                    </a>
+                    <label for="search-input" class="blind">검색어 입력</label>
+                    <input id="search-input" type="text" placeholder="검색어를 입력하세요.">
+                    <button class="blind">검색</button>
+                    <div id="search-right">
+                        <button href="#" id="search-keyboard">
+                            <span class="blind">입력도구</span>
+                        </button>
+                        <button href="#" id="search-recent">
+                            <span class="blind">자동완성/최근 검색어 펼치기</span>
+                        </button>
+                        <button id="search-button">
+                            <div>
+                                <svg id="search-btn" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" class="ico_btn_search type_color"> <path d="M22.13.5c11.378 0 20.632 9.256 20.632 20.63 0 4.699-1.566 9.155-4.439 12.782l10.164 10.165a2.41 2.41 0 0 1-1.706 4.115 2.412 2.412 0 0 1-1.706-.705L33.31 35.719a2.41 2.41 0 0 1 0-3.41 15.71 15.71 0 0 0 4.628-11.178c0-8.718-7.09-15.808-15.807-15.808-8.718 0-15.808 7.09-15.808 15.808 0 7.15 4.817 13.43 11.714 15.273a2.41 2.41 0 0 1 1.705 2.954 2.41 2.41 0 0 1-2.95 1.705C7.788 38.658 1.5 30.46 1.5 21.131 1.5 9.756 10.756.5 22.13.5zm4.716 34.746a3.483 3.483 0 1 1 0 6.966 3.483 3.483 0 0 1 0-6.966z"></path> </svg>
+                                <span class="blind">검색</span>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <style>
+                #nav{
+                    margin-top: 12px;
+                }
+                #nav > ul{
+                    display: flex;
+                    justify-content: center;
+                    font-size: 1.4rem;
+                }
+                #nav a{
+                    text-decoration: none;
+                    text-align: center;
+                }
+                #nav a div{
+                    position: relative;
+                    display: inline-flex;
+                }
+                #nav a div::after{
+                    content: '';
+                    z-index: 1;
+                    position: relative;
+                    display: inline-block;
+                    margin: 2px;
+                    background-image: url(./sp_main.png);
+                    background-size: 463px 442px;
+                    background-position: -205px -219px;
+                    background-repeat: no-repeat;
+                    width: 40px;
+                    height: 40px;
+                }
+                #nav a:visited{
+                    color: black
+                }
+                #nav li{
+                    width: 64px;
+                    margin-left: 4px;
+                    display: flex;
+                    flex-flow: column;
+                }
+                #nav li:nth-of-type(1){
+                    margin-left: 0;
+                }
+                #nav li a div::before{ /* 최신 버전 네이버 반영 */
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    z-index: 0;
+                    top: -1px;
+                    left: -3px;
+                    background-image: url(./sp_main.png);
+                    background-size: 463px 442px;
+                    background-position: -153px -142px;
+                    background-repeat: no-repeat;
+                    width: 50px;
+                    height: 50px;
+                }
+                #nav li:nth-of-type(2) a div::after{
+                    background-position: -41px -219px;
+                }
+                #nav li:nth-of-type(3) a div::after{
+                    background-position: 0px -219px;
+                }
+                #nav li:nth-of-type(4) a div::after{
+                    background-position: -41px -260px;
+                }
+                #nav li:nth-of-type(5) a div::after{
+                    background-position: -270px -205px;
+                }
+                #nav li:nth-of-type(6) a div::after{
+                    background-position: -123px -260px;
+                }
+                #nav li:nth-of-type(7) a div::after{
+                    background-position: 0px -260px;
+                }
+                #nav li:nth-of-type(8) a div::after{ /*최신버전 네이버는 지도 사이즈 동일*/
+                    background-position: -270px 0px;
+                }
+                #nav li:nth-of-type(9) a div::after{
+                    background-position: -164px -260px;
+                }
+                #nav li:nth-of-type(10) a div::after{
+                    background-position: -270px -164px;
+                }
+                #nav li a span{
+                    display: inline-block;
+                    margin-top: 7px;
+                }
+            </style>
+            <nav id="nav">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <div></div>
+                            <span>메일</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div></div>
+                            <span>카페</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div></div>
+                            <span>블로그</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div></div>
+                            <span>스토어</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div></div>
+                            <span>뉴스</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div></div>
+                            <span>증권</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div></div>
+                            <span>부동산</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div></div>
+                            <span>지도</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div></div>
+                            <span>웹툰</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div></div>
+                            <span class="blind">더보기</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <style>
+                #main{
+                    display: flex;
+                    margin-top: 29.5px; /*최신 버전 네이버 반영하다보니 변경된 margin*/
+                }
+                section[id^=main]{
+                    box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0,0,0,.04);
+                    border-radius: 8px;
+                    margin-bottom: 16px;
+                }
+                #main-left{
+                    width: 830px;
+                    margin-right: 30px;
+                }
+                #main-right{
+                    width: 420px;
+                }
+                #main-left-ad, #main-right-ad{
+                    background: gray;
+                }
+                aside[id$=ad]{
+                    border-radius: 8px;
+                    margin-bottom: 16px;
+                }
+                #main-left-ad{
+                    height: 130px;
+                } 
+                #main-newstand{
+                    height: 426px;
+                    display: flex;
+                    flex-flow: column;
+                }
+                .left-section a{
+                    text-decoration: none;
+                }
+                .left-section a:visited{
+                    color: inherit;
+                }
+                .left-section a:hover{
+                    text-decoration: underline;
+                }
+                .left-section header{
+                    font-size: 1.6rem;
+                    color: rgba(8,8,8,.5);
+                    display: flex;
+                    justify-content: flex-start;
+                    line-height: 23px;
+                    margin-bottom: 17px;
+                }
+                .left-section .bold{
+                    font-weight: bold;
+                    color: black;
+                }
+                #main-newstand-top{
+                    flex: 1;
+                    padding: 18px 20px;
+                }
+                #main-shopping-top{
+                    flex: 1;
+                    padding: 18px 20px;
+                }
+                .left-section .dot, .left-section .slash{
+                    color: rgba(8, 8, 8, .5);
+                    font-weight: 800;
+                }
+                #main-newstand-top .dot::before{
+                    content: '';
+                    display: inline-block;
+                    width: 4px;
+                    height: 4px;
+                    background-color: #d3d5d7;
+                    background-color: var(--color_dot_divider);
+                    margin: 9px 7px 0;
+                    border-radius: 50%;
+                    vertical-align: 5px;
+                }
+                .left-section .slash{
+                    position: relative;
+                    padding-left: 26px;
+                }
+                .left-section .slash::before{
+                    content: '';
+                    display: inline-block;
+                    position: absolute;
+                    top: 4px;
+                    left: 13px;
+                    width: 1px;
+                    height: 15px;
+                    background-color: #d3d5d7;
+                    background-color: var(--color_dot_divider);
+                    transform: skewX(-15deg);
+                }
+                #main-newstand-gray{
+                    display: flex;
+                    justify-content: flex-start;
+                    height: 50px;
+                    padding: 12px 20px;
+                    background-color: var(--color_option_bg);
+                    background-repeat: 4px;
+                    font-size: 1.4rem;
+                    line-height: 26px;
+                }
+                #main-newstand-gray .left{
+                    flex: 1;
+                    display: flex;
+                }
+                #main-newstand-gray .left > a:first-of-type{
+                    width: 85.5px;
+                }
+                #main-newstand-gray .left > a:first-of-type::after{
+                    content: '';
+                    background-image: url('./sp_main.png');
+                    background-size: 463px 442px;
+                    background-position: -453px -436px;
+                    background-repeat: no-repeat;
+                    width: 9px;
+                    height: 6px;
+                    display: inline-block;
+                    margin: 10px 0 0 5px;
+                    vertical-align: 3px;
+                }
+                #main-newstand-gray .right{
+                    display: flex;
+                }
+                #main-newstand-gray .bold{
+                    font-weight: bold;
+                    padding-left: 25px;
+                    position: relative;
+                }
+                #main-newstand-gray .bold::before{
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: 7px;
+                    left: 12px;
+                    width: 1px;
+                    height: 12px;
+                    background-color: #d3d5d7;
+                    background-color: var(--color_dot_divider);
+                }
+                #main-newstand-animation{
+                    padding-left: 25px;
+                    position: relative;
+                    display: flex;
+                }
+                #main-newstand-animation::before{
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    top: 7px;
+                    left: 12px;
+                    background-color: #d3d5d7;
+                    background-color: var(--color_dot_divider);
+                    width: 1px;
+                    height: 12px;
+                }
+                #main-newstand-animation > a:last-of-type{
+                    text-overflow: ellipsis;
+                    width: 400px;
+                    white-space: nowrap;
+                    display: inline-block;
+                    overflow: hidden;
+                }
+                #main-newstand-animation > a:first-of-type{
+                    position: relative;
+                    top: -1px;
+                    height: 26px;
+                }
+                #main-newstand-animation > a:first-of-type::after{
+                    content: "";
+                    display: inline-block;
+                    width: 3px;
+                    height: 3px;
+                    background-color: #d3d5d7;
+                    background-color: var(--color_dot_divider);
+                    margin: 12px 6px 0 6px;
+                    border-radius: 50%;
+                    vertical-align: top;
+                }
+                .left-section footer{
+                    border-top: 1px solid var(--color_border_in);
+                    padding: 10px 0 11px;
+                    font-size: 1.3rem;
+                    line-height: 35px;
+                    font-weight: 600;
+                    color: #606060;
+                    color: var(--color_caption2);
+                    display: flex;
+                    justify-content: center;
+                    position: relative;
+                }
+                .left-section footer .news{
+                    color: var(--color_news);
+                }
+                .left-section footer .list, .left-section footer .grid{
+                    position: absolute;
+                    border: none;
+                    cursor: pointer;
+                    top: 0;
+                    background-color: transparent;
+                }
+                .left-section footer .prev,  .left-section footer .next{
+                    background: none;
+                    border: none;
+                    width: 36px;
+                    height: 36px;
+                    border: 1px solid #dadcdf;
+                    border: 1px solid var(--color_button_border);
+                    background-color: #fff;
+                    background-color: var(--color_button1_bg);
+                    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .06);
+                    border-radius: 50%;
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                 }
+                .left-section footer .prev::before{
+                    content: '';
+                    display: block;
+                    background-image: url(https://pm.pstatic.net/resources/asset/sp_main.04eb92b7.png);
+                    background-size: 463px 442px;
+                    background-position: -453px -91px;
+                    background-repeat: no-repeat;
+                    width: 10px;
+                    height: 12px;
+                    transform: rotate(180deg);
+                }
+                .left-section footer .next::before{
+                    content: '';
+                    display: block;
+                    background-image: url(https://pm.pstatic.net/resources/asset/sp_main.04eb92b7.png);
+                    background-size: 463px 442px;
+                    background-position: -453px -91px;
+                    background-repeat: no-repeat;
+                    width: 10px;
+                    height: 12px;
+                }
+                .left-section footer .text{
+                    min-width: 156px;
+                    padding: 0 16px;
+                }
+                .left-section footer .list{
+                    right: 49px;
+                    padding: 18px 9px 18px 20px;
+                }
+                .left-section footer .list::before{
+                    content: '';
+                    display: inline-block;
+                    background-image: url('./sp_main.png');
+                    background-size: 463px 442px;
+                    background-position: -229px -376px;
+                    background-repeat: no-repeat;
+                    width: 20px;
+                    height: 20px;
+                }
+                #main-newstand footer .list:hover::before{
+                    background-position: -208px -376px;
+                }
+                .left-section footer .grid{
+                    right: 0;
+                    padding: 18px 20px 18px 9px;
+                }
+                .left-section footer .grid::before{
+                    content: '';
+                    display: inline-block;
+                    background-image: url('./sp_main.png');
+                    background-size: 463px 442px;
+                    background-position: -432px -21px;
+                    background-repeat: no-repeat;
+                    width: 20px;
+                    height: 20px;
+                }
+                .left-section footer .total{
+                    color: rgba(96, 96, 96, .5);
+                }
+                #main-newstand-grid{
+                    display: grid;
+                    justify-content: center;
+                    align-items: center;
+                    height: 224px;
+                    grid-template-rows: 1fr 1fr 1fr 1fr;
+                    width: 790px;
+                    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+                    border: 1px solid var(--color_border_in);
+                    border-radius: 4px;
+                    margin-top: 18px;
+                    grid-gap: 1px;
+                    background-color: var(--color_border_in);
+                }
+                #main-newstand-grid > div{
+                    height: 100%;
+                    background-color: white;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                #main-shopping{
+                    height: 560px;
+                    display: flex;
+                    flex-flow: column;
+                }
+                #main-shopping footer .text{
+                    min-width: 176px;
+                }
+                .left-section footer .hot{
+                    color: #9858f5;
+                }
+                #main-shopping-gray{
+                    display: flex;
+                }
+                #main-shopping-gray .left{
+                    width: 668px;
+                    height: 50px;
+                    padding: 15px 20px 14px;
+                    display: flex;
+                    background-color: var(--color_option_bg);
+                }
+                #main-shopping-gray .right{
+                    margin-left: auto;
+                    padding: 10px 0;
+                }
+                #main-shopping-top{
+                    padding-top: 19px;
+                }
+                #main-shopping-grid{
+                    margin-top: 20px;
+                    display: grid;
+                    grid-template-rows: 90px 95px 170px;
+                    grid-template-columns: 1fr 1fr 1fr 1fr 250px;
+                    column-gap: 20px;
+                }
+                .item:nth-child(1), .item:nth-child(2), .item:nth-child(3), .item:nth-child(4){
+                    grid-row: 1 / span 2;
+                }
+                .item:nth-child(5), .item:nth-child(6), .item:nth-child(11) > div:first-child{
+                    padding: 10px, 12px, 5px;
+                    border-radius: 4px;
+                    border: 1px solid rgba(0, 0, 0, .05);
+                    background: rgba(245, 248, 251, .6);
+                }
+                .item:nth-child(6){
+                    margin: 11px 0;
+                }
+                .item:nth-child(11) > div:first-child{
+                    margin-bottom: 10px;
+                    height: 135px;
+                }
+                #main-shopping-grid .item{
+                    line-height: 20px;
+                    letter-spacing: -.8px;
+                    font-size: 1.4rem;
+                }
+                #main-shopping-grid .item > .img{
+                    width: 115px;
+                    height: 115px;
+                    border-radius: 4px;
+                    background-color: gray;
+                    margin-bottom: 10px;
+                }
+                #main-login{
+                    height: 164px;
+                    padding: 21px 20px 18px;
+                    font-size: 1.4rem;
+                    display: flex;
+                    flex-flow: column;
+                }
+                #main-login-button{
+                    margin-top: 13px;
+                    padding: 17px 0;
+                    border: 1px solid rgba(0,0,0,.06);
+                    height: 56px;
+                    border-radius: 4px;
+                    background-color: #03c75a;
+                    color: white;
+                    text-decoration: none;
+                    margin-bottom: 16px;
+                }
+                #main-login > div:last-of-type{
+                    font-size: 1.3rem;
+                    display: flex;
+                    justify-content: center;
+                }
+                #main-login > div:last-of-type a:first-of-type, #main-login > div:last-of-type a:last-of-type{
+                    position: relative;
+                    top: 5px;
+                }
+                #main-login > div:last-of-type a{
+                    text-decoration: none;
+                    color: var(--color_caption2);
+                    letter-spacing: -0.4px;
+                }
+                #main-login > div:last-of-type a:hover{
+                    text-decoration: underline;
+                }
+                #main-login > div:last-of-type a:visited{
+                    color: var(--color_caption2);
+                }
+                #main-login > div:first-of-type{
+                    line-height: 20px;
+                }
+                #main-login > div:last-of-type > a:nth-of-type(2)::before, #main-login > div:last-of-type > a:nth-of-type(2)::after{
+                    content: '';
+                    display: inline-block;
+                    width: 1px;
+                    height: 12px;
+                    background-color: #d3d5d7;
+                    background-color: var(--color_dot_divider);
+                    margin: 4px 12px 0;
+                }
+                #main-login-button i{
+                    display: inline-block;
+                    vertical-align: -1px;
+                    background-image: url(./sp_main.png);
+                    background-size: 463px 442px;
+                    background-position: 0px -301px;
+                    background-repeat: no-repeat;
+                    width: 72px;
+                    height: 14px;
+                    margin: 3px 8px 0 0;
+                }
+                #main-right-ad{
+                    height: 240px;
+                } 
+                .main-weather-and-stock{
+                    padding: 0 18px;
+                }
+                .main-weather-and-stock > header{
+                    height: 52px;
+                    padding: 6px 0;
+                }
+                .main-weather-and-stock > div{
+                    border-top: 1px solid var(--color_border_in);
+                }
+                #main-weather{
+                    height: 236px;
+                }
+                #main-stock{
+                    height: 236px;
+                }
+            </style>
+            <main id="main">
+                <div id="main-left">
+                    <aside id="main-left-ad"></aside>
+                    <section id="main-shopping" class="left-section">
+                        <div id="main-newstand-top">
+                            <header>
+                                <a href="#" class="bold">뉴스스탠드</a>
+                                <a href="#" class="dot">언론사편집</a>
+                                <a href="#" class="slash">엔터</a>
+                                <a href="#" class="slash">스포츠</a>
+                                <a href="#" class="slash">경제</a>
+                            </header>
+                            <div id="main-newstand-gray">
+                                <div class="left">
+                                    <a href="#">전체언론사</a>
+                                    <div id="main-newstand-animation">
+                                        <a href="#">연합뉴스</a>
+                                        <a href="#">피로그래밍 과제의 은혜가 끝이 없어 어제 잠을 잔 과거의 내가 미워져</a>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <a href="#">뉴스스탠드</a>
+                                    <a href="#" class="bold">뉴스홈</a>
+                                </div>
+                            </div>
+                            <div id="main-newstand-grid">
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                                <div>언론사</div>
+                            </div>
+                        </div>
+                        <footer>
+                            <button class="prev"><span class="blind">이전 페이지</span></button>
+                            <div class="text"><span class="news">언론사</span>&nbsp;&nbsp;더보기&nbsp;1<span class="total">/4</span></div>
+                            <button class="next"><span class="blind">다음 페이지</span></button>
+                            <button class="list"><span class="blind">목록보기</span></button>
+                            <button class="grid"><span class="blind">격자보기</span></button>
+                        </footer>
+                    </section>
+                    <section id="main-shopping" class="left-section">
+                        <div id="main-shopping-top">
+                            <header>
+                                <a href="#" class="bold">쇼핑</a>
+                                <a href="#" class="slash">맨즈</a>
+                                <a href="#" class="slash">원쁠딜</a>
+                                <a href="#" class="slash">쇼핑라이브</a>
+                            </header>
+                            <div id="main-shopping-gray">
+                                <div class="left">
+                                    <a href="#">오늘의 혜택</a>
+                                    <div id="main-shopping-animation">
+                                        <a href="#">피로그래밍 과제의 은혜가 끝이 없어 어제 잠을 잔 과거의 내가 미워져</a>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <span>1</span>
+                                    <span>/18</span>
+                                    <button class="prev"><span class="blind"></span></button>
+                                    <button class="next"><span class="blind"></span></button>
+                                </div>
+                            </div>
+                            <div id="main-shopping-grid">
+                                <div class="item">
+                                    <div class="img"></div>
+                                    <div class="text">독보적인 퀼리티 우린품격을입어요</div>
+                                </div>
+                                <div class="item">
+                                    <div class="img"></div>
+                                    <div class="text">독보적인 퀼리티 우린품격을입어요</div>
+                                </div>
+                                <div class="item">
+                                    <div class="img"></div>
+                                    <div class="text">독보적인 퀼리티 우린품격을입어요</div>
+                                </div>
+                                <div class="item">
+                                    <div class="img"></div>
+                                    <div class="text">독보적인 퀼리티 우린품격을입어요</div>
+                                </div>
+                                <div class="item">5</div>
+                                <div class="item">6</div>
+                                <div class="item">
+                                    <div class="img"></div>
+                                    <div class="text">독보적인 퀼리티 우린품격을입어요</div>
+                                </div>
+                                <div class="item">
+                                    <div class="img"></div>
+                                    <div class="text">독보적인 퀼리티 우린품격을입어요</div>
+                                </div>
+                                <div class="item">
+                                    <div class="img"></div>
+                                    <div class="text">독보적인 퀼리티 우린품격을입어요</div>
+                                </div>
+                                <div class="item">
+                                    <div class="img"></div>
+                                    <div class="text">독보적인 퀼리티 우린품격을입어요</div>
+                                </div>
+                                <div class="item">
+                                    <div></div>
+                                    <div>아웃렛 쇼핑 득템찬스! 시즌오프SALE</div>
+                                </div>
+                            </div>
+                        </div>
+                        <footer>
+                            <button class="prev"><span class="blind">이전 페이지</span></button>
+                            <div class="text"><span class="hot">쇼핑핫아이템</span>&nbsp;&nbsp;더보기&nbsp;1<span class="total">/18</span></div>
+                            <button class="next"><span class="blind">다음 페이지</span></button>
+                        </footer>
+                    </section>
+                </div>
+                <div id="main-right">
+                    <section id="main-login">
+                        <div>네이버를 더 안전하고 편리하게 이용하세요</div>
+                        <a href="" id="main-login-button"><i></i>로그인</a>
+                        <div>
+                            <a href="#">아이디 찾기</a>
+                            <a href="#">비밀번호 찾기</a>
+                            <a href="#">회원가입</a>
+                        </div>
+                    </section>
+                    <aside id="main-right-ad"></aside>
+                    <section id="main-weather" class="main-weather-and-stock">
+                        <header>날씨</header>
+                        <div></div>
+                    </section>
+                    <section id="main-stock" class="main-weather-and-stock">
+                        <header>증시</header>
+                        <div></div>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
