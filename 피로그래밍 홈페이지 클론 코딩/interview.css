@@ -356,7 +356,7 @@ section{
         height: 30px;
     }
 }
-@media (max-width:800px){
+@media (max-width:850px){
     #card_grid{
         grid-template-columns: repeat(2, 1fr);
     }
