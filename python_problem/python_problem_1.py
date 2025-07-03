@@ -10,4 +10,4 @@ while True:
         print("정수를 입력하세요")
 for i in range(play):
     num += 1
-    print(num)
+    print(f"playerA:{num}")
