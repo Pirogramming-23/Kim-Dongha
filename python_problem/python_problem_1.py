@@ -12,6 +12,7 @@ while True:
     for i in range(play):
         num += 1
         if num > 31:
+            print("playerB win!")
             break
         print(f"playerA:{num}")
     if num > 31:
@@ -28,6 +29,7 @@ while True:
     for i in range(play):
         num += 1
         if num > 31:
+            print("playerA win!")
             break
         print(f"playerB:{num}")
     if num > 31:
