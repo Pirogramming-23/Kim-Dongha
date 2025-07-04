@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Stop Watch</title>
+</head>
+<body>
+    <section class="stop-watch">
+        <div class="watch">
+            <span id="time">00:00:00</span>
+        </div>
+        <div class="buttons">
+            <button class="btn" id="start" onclick="startwatch()">start</button>
+            <button class="btn" id="stop" onclick="stopwatch()">stop</button>
+            <button class="btn" id="reset" onclick="resetwatch()">reset</button>
+        </div>
+    </section>
+    <section class="record">
+        <ul id="records">
+            <li class="title">
+                <button id="toggle" onclick="toggleSelectAll()">
+                    <img id="toggle_img" src="circle-line.png" alt="select!">
+                </button>
+                <span>구간 기록</span>
+                <button onclick="deleteList()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="white">
+                        <path d="M7 6V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7ZM9 4V6H15V4H9Z"></path>
+                    </svg>
+                </button>
+            </li>
+        </ul>
+    </section>
+</body>
+<script src="script.js"></script>
+</html>
