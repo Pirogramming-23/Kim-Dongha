@@ -10,7 +10,7 @@ class PostForm(forms.ModelForm):
         ]
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'genre': forms.TextInput(attrs={'class': 'form-control'}),
+            'genre': forms.Select(attrs={'class': 'form-control'}),
             'gamdok': forms.TextInput(attrs={'class': 'form-control'}),
             'juyeon': forms.TextInput(attrs={'class': 'form-control'}),
             'runningtime': forms.NumberInput(attrs={'class': 'form-control', 'min': 1}),
