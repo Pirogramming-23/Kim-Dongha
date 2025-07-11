@@ -4,7 +4,7 @@
         <div id="movie_blocks">
             {% for post in posts %}
             <div class="movie_block">
-                <p class="published">별점: {{ post.score }}/5 | 장르: {{ post.genre }}</p>
+                <p class="published">별점: {{ post.score }}/5 | 장르: {{ post.genre }} | 개봉년도: {{ post.year }}</p>
                 <h2 class="h2_title"><a class="movie_title" href="{% url 'review_detail' pk=post.pk %}">{{ post.title }}</a></h2>
                 <div class="buttons">
                     <a href="{% url 'review_edit' pk=post.pk %}">수정</a>

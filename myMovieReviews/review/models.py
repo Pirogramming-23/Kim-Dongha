@@ -16,6 +16,9 @@ class Post(models.Model):
         ('ani', '애니메이션')
     ]
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    year = models.IntegerField(
+        default = 2024
+    )
     title = models.CharField(max_length=200)
     genre = models.CharField(max_length=20, choices=GENRE_CHOICES)
     gamdok = models.CharField(max_length=50)
