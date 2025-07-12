@@ -1,0 +1,247 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Poor Story", sans-serif;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+header{
+    background-color: rgb(239, 251, 255);
+    font-family: "Gugi";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    padding: 20px;
+    font-size: 25px;
+}
+
+#anc_box{
+    display: flex;
+    justify-content: center;
+}
+
+#movie_blocks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2열 고정 */
+    gap: 10px;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.movie_block{
+    width: 100%;
+    border: 1px solid gray;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    gap: 5px;
+    min-height: 140px;
+}
+
+.published{
+    font-size: 15px;
+}
+
+.movie_title{
+    transition: 0.3s;
+    font-size: 30px;
+}
+
+.movie_title:hover{
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.buttons{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    flex-flow: row;
+    gap: 8px;
+}
+
+.buttons a, .buttons button{
+    background-color: rgb(204, 236, 248);
+    border-radius: 10px;
+    width: 45px;
+    height: 35px;
+    border: none;
+    transition: 0.3s;
+    font-size: 13px;
+    text-align: center;
+    line-height: 35px;
+}
+
+.buttons a:hover,
+.buttons button:hover{
+    box-shadow: 0 0 7px rgb(178, 206, 216);
+    font-size: 15px;
+}
+
+.h2_title{
+    border-bottom: 1px solid rgb(187, 187, 187);
+    margin-bottom: 5px;
+}
+
+#movie_content{
+    font-size: 13px;
+}
+
+@media (max-width: 767px) {
+    #movie_blocks {
+        grid-template-columns: 1fr; /* 모바일에서는 1열 */
+        max-width: 100%;
+        margin: 20px;
+    }
+}
+
+#plus{
+    width: 100%;
+    min-height: 140px;
+    border: 1px solid gray;
+    padding: 10px;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    gap: 0;
+}
+
+#first_plus{
+    font-family: "Jua";
+    font-size: 80px;
+    transition: 0.3s;
+}
+
+#first_plus:hover{
+    font-size: 90px;
+}
+
+.detail{
+    max-width: 900px;
+    position: relative;
+}
+
+#movie_title_d{
+    border-bottom: 1px solid gray;
+    margin-bottom: 10px;
+}
+
+#edit_form{
+    display: flex;
+    flex-flow: column;
+    width: 900px;
+    gap: 20px;
+}
+
+.addtitle{
+    display: flex;
+    flex-flow: row;
+    gap: 20px;
+}
+
+.addactor{
+    display: flex;
+    flex-flow: row;
+    gap: 20px;
+}
+
+.addscore{
+    display: flex;
+    flex-flow: row;
+    gap: 20px;
+}
+
+.gingul{
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+}
+
+.form-group-r{
+    display: flex;
+    flex-flow: row;
+}
+
+.form-group-c{
+    display: flex;
+    flex-flow: column;
+}
+
+input[type="number"],
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 5px;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+#edit_form{
+    margin-top: 20px;
+}
+
+.post-form{
+    display: flex;
+    gap: 20px;
+    flex-flow: column;
+    position: relative;
+}
+
+#editbuttons{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    flex-flow: row;
+    gap: 20px;
+}
+
+#editbuttons > a{
+    text-align: center;
+    line-height: 45px;
+}
+
+.btn{
+    background-color: rgb(204, 236, 248);
+    border-radius: 10px;
+    width: 70px;
+    height: 45px;
+    border: none;
+    transition: 0.3s;
+    font-size: 20px;
+}
+
+.btn:hover{
+    box-shadow: 0 0 7px rgb(178, 206, 216);
+    font-size: 25px;
+}
+
+#control-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#control-buttons a{
+    background-color: rgb(204, 236, 248);
+    border-radius: 10px;
+    width: 50px;
+    height: 40px;
+    border: none;
+    transition: 0.3s;
+    font-size: 20px;
+    text-align: center;
+    line-height: 40px;
+}

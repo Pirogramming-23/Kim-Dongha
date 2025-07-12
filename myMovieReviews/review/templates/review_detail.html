@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="edit_form">
+        <h1>{{ post.title }}</h1>
+
+        <div class="addtitle">
+            <div class="form-group-r">
+                <strong>장르:&nbsp;</strong> {{ post.genre }}
+            </div>
+        </div>
+
+        <div class="addactor">
+            <div class="form-group-r">
+                <strong>감독:&nbsp;</strong> {{ post.gamdok }}
+            </div>
+
+            <div class="form-group-r">
+                <strong>주연:&nbsp;</strong> {{ post.juyeon }}
+            </div>
+
+            <div class="form-group-r">
+                <strong>개봉년도:&nbsp;</strong> {{ post.year }}
+            </div>
+        </div>
+
+        <div class="addscore">
+            <div class="form-group-r">
+                <strong>상영시간:&nbsp;</strong> {{ running_display }}
+            </div>
+
+            <div class="form-group-r">
+                <strong>평점:&nbsp;</strong> {{ post.score }} / 5
+            </div>
+        </div>
+
+        <div class="gingul">
+            <div class="form-group-c">
+                <strong>줄거리</strong>
+                <div>{{ post.text|linebreaksbr }}</div>
+            </div>
+
+            <div class="form-group-c">
+                <strong>리뷰</strong>
+                <div>{{ post.text_content|linebreaksbr }}</div>
+            </div>
+        </div>
+
+        <div id="control-buttons">
+            <a href="{% url 'review_main' %}" class="btn">목록</a>
+            <a href="{% url 'review_edit' pk=post.pk %}" class="btn">수정</a>
+        </div>
+    </div>
+{% endblock %}
