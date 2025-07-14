@@ -31,6 +31,3 @@
 
 ### ⭐ 나의 각오
 피로그래밍 23기를 통해 협업실력을 키우겠다.
-
-### ERDCloud LINK
-https://www.erdcloud.com/d/JxrZEyyqBTCvXE5SX
