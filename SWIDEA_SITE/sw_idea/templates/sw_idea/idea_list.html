@@ -4,14 +4,25 @@
 <h2>아이디어 목록</h2>
 
 <div>
-    <form method="get">
-        <label for="sort">정렬:</label>
-        <select name="sort" onchange="this.form.submit()">
-            <option value="latest" {% if sort == 'latest' %}selected{% endif %}>최신순</option>
-            <option value="likes" {% if sort == 'likes' %}selected{% endif %}>찜 많은 순</option>
-            <option value="title" {% if sort == 'title' %}selected{% endif %}>이름순</option>
+    <form method="get" style="margin-bottom:20px">
+        <input type="text" name="q" placeholder="제목 검색" value="{{ q }}">
+        <select name="tool">
+            <option value="">개발툴 전체</option>
+            {% for t in devtools %}
+                <option value="{{ t.id }}" {% if tool_id|add:'' == t.id|stringformat:"s" %}selected{% endif %}>
+                    {{ t.name }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <select name="sort">
+            <option value="latest"  {% if sort == 'latest'  %}selected{% endif %}>최신순</option>
+            <option value="likes"   {% if sort == 'likes'   %}selected{% endif %}>찜순</option>
+            <option value="title"   {% if sort == 'title'   %}selected{% endif %}>이름순</option>
             <option value="created" {% if sort == 'created' %}selected{% endif %}>등록순</option>
         </select>
+
+        <button type="submit">검색</button>
     </form>
 </div>
 

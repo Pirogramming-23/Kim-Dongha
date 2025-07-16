@@ -45,8 +45,17 @@ def logout_view(request):
 
 
 def idea_list(request):
-    sort = request.GET.get('sort', 'latest') #default
+    q        = request.GET.get('q', '').strip()
+    tool_id  = request.GET.get('tool', '')
+    sort     = request.GET.get('sort', 'latest') #최근이 디폹 값
+
     ideas = Idea.objects.all()
+
+    if q:
+        ideas = ideas.filter(title__icontains=q)
+
+    if tool_id:
+        ideas = ideas.filter(devtool_id=tool_id)
 
     if sort == 'likes':
         ideas = ideas.annotate(num_likes=Count('ideastar')).order_by('-num_likes', '-created_at')
@@ -54,17 +63,17 @@ def idea_list(request):
         ideas = ideas.order_by('title')
     elif sort == 'created':
         ideas = ideas.order_by('created_at')
-    else: 
+    else:
         ideas = ideas.order_by('-created_at')
 
-    paginator = Paginator(ideas, 4) 
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    page_obj = Paginator(ideas, 4).get_page(request.GET.get('page'))
 
-    return render(request, 'sw_idea/idea_list.html', {
-        'page_obj': page_obj,
-        'sort': sort,
-    })
+    devtools = DevTool.objects.all() 
+
+    return render(request, 'sw_idea/idea_list.html',
+                  {'page_obj': page_obj, 'sort': sort,
+                   'q': q, 'tool_id': tool_id, 'devtools': devtools})
+
 
 def idea_detail(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
