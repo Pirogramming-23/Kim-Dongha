@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>SW 아이디어 플랫폼</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'idea_list' %}">SW IDEA</a></h1>
+        <nav>
+            <a href="{% url 'idea_create' %}">아이디어 등록</a> |
+            <a href="{% url 'devtool_list' %}">개발툴 목록</a> |
+            <a href="{% url 'devtool_create' %}">개발툴 등록</a> |
+            {% if user.is_authenticated %}
+                <span>{{ user.username }} 님</span> |
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background:none; border:none; color:var(--primary); cursor:pointer; font-weight:bold; padding:0;">
+                        로그아웃
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">로그인</a> |
+                <a href="{% url 'signup' %}">회원가입</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

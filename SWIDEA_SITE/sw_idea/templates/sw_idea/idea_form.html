@@ -1,0 +1,33 @@
+{% extends 'sw_idea/base.html' %}
+{% block content %}
+
+<h2>{% if form.instance.pk %}아이디어 수정{% else %}아이디어 등록{% endif %}</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+        <label for="{{ form.title.id_for_label }}">제목</label>
+        {{ form.title }}
+    </div>
+    <div>
+        <label for="{{ form.image.id_for_label }}">썸네일 이미지</label>
+        {{ form.image }}
+    </div>
+    <div>
+        <label for="{{ form.content.id_for_label }}">내용</label>
+        {{ form.content }}
+    </div>
+    <div>
+        <label for="{{ form.interest.id_for_label }}">초기 관심도</label>
+        {{ form.interest }}
+    </div>
+    <div>
+        <label for="{{ form.devtool.id_for_label }}">개발툴</label>
+        {{ form.devtool }}
+    </div>
+
+    <button type="submit">저장</button>
+    <a href="{% url 'idea_list' %}">취소</a>
+</form>
+
+{% endblock %}

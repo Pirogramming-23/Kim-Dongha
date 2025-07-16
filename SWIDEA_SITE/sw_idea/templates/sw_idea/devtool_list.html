@@ -1,0 +1,23 @@
+{% extends 'sw_idea/base.html' %}
+{% block content %}
+
+<h2>개발툴 목록</h2>
+
+<div class="devtool-list">
+    {% for tool in devtools %}
+        <div class="devtool-card">
+            <h3>
+                <a href="{% url 'devtool_detail' pk=tool.pk %}">
+                    {{ tool.name }}
+                </a>
+            </h3>
+            <p>{{ tool.content|truncatechars:100 }}</p>
+        </div>
+    {% empty %}
+        <p>등록된 개발툴이 없습니다.</p>
+    {% endfor %}
+</div>
+
+<a href="{% url 'devtool_create' %}">+ 개발툴 등록</a>
+
+{% endblock %}

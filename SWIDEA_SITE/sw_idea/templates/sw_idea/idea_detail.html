@@ -1,0 +1,53 @@
+{% extends 'sw_idea/base.html' %}
+{% block content %}
+
+<h2>{{ idea.title }}</h2>
+
+<img src="{{ idea.image.url }}" alt="{{ idea.title }}" style="max-width: 400px;">
+
+<p><strong>내용:</strong> {{ idea.content|linebreaks }}</p>
+<p><strong>개발툴:</strong>
+    <a href="{% url 'devtool_detail' pk=idea.devtool.pk %}">
+        {{ idea.devtool.name }} ({{ idea.devtool.get_kind_display }})
+    </a>
+</p>
+<p><strong>관심도:</strong> <span id="interest-count">{{ idea.interest }}</span></p>
+<p><strong>찜 상태:</strong>
+    {% if user.is_authenticated %}
+        <span id="star-status">{{ is_starred|yesno:"찜됨,찜 안됨" }}</span>
+        <button id="toggle-star">★</button>
+    {% else %}
+        로그인 후 사용 가능
+    {% endif %}
+</p>
+
+<div>
+    <a href="{% url 'idea_edit' pk=idea.pk %}">수정</a>
+    <form method="post" action="{% url 'idea_delete' pk=idea.pk %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">삭제</button>
+    </form>
+    <a href="{% url 'idea_list' %}">목록</a>
+</div>
+
+{% if user.is_authenticated %}
+<script>
+    $('#toggle-star').click(function() {
+        $.get("{% url 'toggle_star' pk=idea.pk %}", function(data) {
+            $('#star-status').text(data.starred ? "찜됨" : "찜 안됨");
+        });
+    });
+
+    $('.interest-btn').click(function() {
+        const action = $(this).data('action');
+        $.post("{% url 'update_interest' pk=idea.pk %}", {
+            action: action,
+            csrfmiddlewaretoken: '{{ csrf_token }}'
+        }, function(data) {
+            $('#interest-count').text(data.interest);
+        });
+    });
+</script>
+{% endif %}
+
+{% endblock %}
