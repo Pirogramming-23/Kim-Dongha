@@ -1,0 +1,24 @@
+{% extends "sw_idea/base.html" %}
+{% block content %}
+
+<h2>로그인</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="id_username">아이디</label>
+        <input type="text" name="username" required id="id_username">
+    </div>
+    <div>
+        <label for="id_password">비밀번호</label>
+        <input type="password" name="password" required id="id_password">
+    </div>
+    <button type="submit">로그인</button>
+    {% if messages %}
+        {% for m in messages %}
+            <p style="color:red">{{ m }}</p>
+        {% endfor %}
+    {% endif %}
+</form>
+
+{% endblock %}

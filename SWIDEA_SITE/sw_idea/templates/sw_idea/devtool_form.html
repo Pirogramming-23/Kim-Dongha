@@ -1,0 +1,25 @@
+{% extends 'sw_idea/base.html' %}
+{% block content %}
+
+<h2>{% if form.instance.pk %}개발툴 수정{% else %}개발툴 등록{% endif %}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="{{ form.name.id_for_label }}">이름 (예: Python, C++)</label>
+        {{ form.name }}
+    </div>
+    <div>
+        <label for="{{ form.kind.id_for_label }}">종류</label>
+        {{ form.kind }}
+    </div>
+    <div>
+        <label for="{{ form.content.id_for_label }}">설명</label>
+        {{ form.content }}
+    </div>
+
+    <button type="submit">저장</button>
+    <a href="{% url 'devtool_list' %}">취소</a>
+</form>
+
+{% endblock %}

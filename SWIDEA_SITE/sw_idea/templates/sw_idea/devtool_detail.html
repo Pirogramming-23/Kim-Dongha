@@ -1,0 +1,33 @@
+{% extends 'sw_idea/base.html' %}
+{% block content %}
+
+<h2>개발툴: {{ devtool.name }}</h2>
+
+<p><strong>종류:</strong> {{ devtool.get_kind_display }}</p>
+
+<h3>설명</h3>
+<div>
+    {{ devtool.content|linebreaks }}
+</div>
+
+<hr>
+
+<h4>이 툴을 사용한 아이디어</h4>
+<ul>
+    {% for idea in ideas %}
+        <li><a href="{% url 'idea_detail' pk=idea.pk %}">{{ idea.title }}</a></li>
+    {% empty %}
+        <li>해당 툴을 사용하는 아이디어가 없습니다.</li>
+    {% endfor %}
+</ul>
+
+<div style="margin-top: 20px;">
+    <a href="{% url 'devtool_edit' pk=devtool.pk %}">수정</a>
+    <form method="post" action="{% url 'devtool_delete' pk=devtool.pk %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">삭제</button>
+    </form>
+    <a href="{% url 'devtool_list' %}">목록</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'sw_idea/base.html' %}
+{% block content %}
+
+<h2>아이디어 목록</h2>
+
+<div>
+    <form method="get" style="margin-bottom:20px">
+        <input type="text" name="q" placeholder="제목 검색" value="{{ q }}">
+        <select name="tool">
+            <option value="">개발툴 전체</option>
+            {% for t in devtools %}
+                <option value="{{ t.id }}" {% if tool_id|add:'' == t.id|stringformat:"s" %}selected{% endif %}>
+                    {{ t.name }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <select name="sort">
+            <option value="latest"  {% if sort == 'latest'  %}selected{% endif %}>최신순</option>
+            <option value="likes"   {% if sort == 'likes'   %}selected{% endif %}>찜순</option>
+            <option value="title"   {% if sort == 'title'   %}selected{% endif %}>이름순</option>
+            <option value="created" {% if sort == 'created' %}selected{% endif %}>등록순</option>
+        </select>
+
+        <button type="submit">검색</button>
+    </form>
+</div>
+
+<div class="idea-list">
+    {% for idea in page_obj %}
+    <div class="idea-card">
+        <img src="{{ idea.image.url }}" alt="{{ idea.title }}" class="thumbnail">
+        <h3><a href="{% url 'idea_detail' pk=idea.pk %}">{{ idea.title }}</a></h3>
+        <p>{{ idea.content|truncatechars:50 }}</p>
+        <div>
+            <button class="star-btn" data-id="{{ idea.pk }}">★</button>
+            <span class="interest-count" id="interest-{{ idea.pk }}">{{ idea.interest }}</span>
+            <button class="interest-btn" data-id="{{ idea.pk }}" data-action="plus">+</button>
+            <button class="interest-btn" data-id="{{ idea.pk }}" data-action="minus">-</button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}&sort={{ sort }}">이전</a>
+    {% endif %}
+    <span>{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}&sort={{ sort }}">다음</a>
+    {% endif %}
+</div>
+
+<script>
+    $('.star-btn').click(function() {
+        const id = $(this).data('id');
+        $.get(`/idea/${id}/toggle_star/`, function(data) {
+            alert(data.starred ? "찜 완료!" : "찜 해제됨.");
+        });
+    });
+
+    $('.interest-btn').click(function() {
+        const id = $(this).data('id');
+        const action = $(this).data('action');
+        $.post(`/idea/${id}/update_interest/`, { action: action, csrfmiddlewaretoken: '{{ csrf_token }}' }, function(data) {
+            $(`#interest-${id}`).text(data.interest);
+        });
+    });
+</script>
+
+{% endblock %}
